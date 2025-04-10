@@ -4,7 +4,7 @@ import Header from "@/components/header";
 // import Footer from "@/components/footer"
 import Categories from "@/components/categories"
 // import Newsletter from "@/components/newsletter"
-// import Testimonials from "@/components/testimonials"
+import Testimonials from "@/components/testimonials"
 import FeaturedEvents from "@/components/featured-events"
 
 export const metadata: Metadata = {
@@ -21,8 +21,8 @@ export default function Home() {
 				<Hero />
 				<Categories />
 				<FeaturedEvents />
-				{/*<Testimonials />
-        <Newsletter /> */}
+				<Testimonials />
+				{/*<Newsletter /> */}
 			</main>
 			{/* <Footer /> */}
 		</div>
