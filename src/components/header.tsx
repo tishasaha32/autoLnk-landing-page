@@ -2,11 +2,10 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
-import { motion, } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { AnimatePresence } from "framer-motion"
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -29,10 +28,9 @@ const Header = () => {
             animate={{ y: 0 }}
             transition={{ duration: 0.5 }}
         >
-            <div className="container flex items-center justify-between">
+            <div className="flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2">
                     <motion.div
-                        className="text-2xl font-bold text-white"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2 }}
@@ -47,6 +45,16 @@ const Header = () => {
                     </motion.div>
                 </Link>
 
+                {/* Mobile Menu Toggle */}
+                <div className="md:hidden">
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="text-white focus:outline-none"
+                    >
+                        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                    </button>
+                </div>
+
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center gap-6">
                     {["Events", "Categories", "Gallery", "NewsLetter"].map((item, i) => (
@@ -59,15 +67,14 @@ const Header = () => {
                             <Link
                                 href={`#${item.toLowerCase()}`}
                                 onClick={(e) => {
-                                    e.preventDefault();
-                                    const section = document.querySelector(`#${item.toLowerCase()}`);
-                                    section?.scrollIntoView({ behavior: "smooth" });
+                                    e.preventDefault()
+                                    const section = document.querySelector(`#${item.toLowerCase()}`)
+                                    section?.scrollIntoView({ behavior: "smooth" })
                                 }}
                                 className="text-white/80 hover:text-white transition-colors"
                             >
                                 {item}
                             </Link>
-
                         </motion.div>
                     ))}
                     <motion.div
@@ -78,52 +85,36 @@ const Header = () => {
                         <Button className="bg-red-600 hover:bg-red-700">Sign In</Button>
                     </motion.div>
                 </nav>
-
-                {/* Mobile Menu Button */}
-                <div className="md:hidden z-50 relative">
-                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} className="text-white">
-                        {isOpen ? <X size={24} /> : <Menu size={24} />}
-                    </Button>
-                </div>
             </div>
 
             {/* Mobile Navigation */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        className="fixed inset-0 bg-black z-40 pt-20"
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                    >
-                        <nav className="flex flex-col items-center gap-6 p-4">
-                            {["Events", "Categories", "Gallery", "NewsLetter"].map((item, i) => (
-                                <motion.div
-                                    key={item}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.1 * i }}
-                                >
-                                    <Link
-                                        href={`#${item.toLowerCase()}`}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            const section = document.querySelector(`#${item.toLowerCase()}`);
-                                            section?.scrollIntoView({ behavior: "smooth" });
-                                        }}
-                                        className="text-white/80 hover:text-white transition-colors"
-                                    >
-                                        {item}
-                                    </Link>
-                                </motion.div>
-                            ))}
-                            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-                                <Button className="bg-red-600 hover:bg-red-700 mt-4 w-full">Sign In</Button>
-                            </motion.div>
-                        </nav>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    className="md:hidden absolute top-20 left-0 right-0 bg-black/90 p-4"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                >
+                    <nav className="flex flex-col items-center gap-4">
+                        {["Events", "Categories", "Gallery", "NewsLetter"].map((item) => (
+                            <Link
+                                key={item}
+                                href={`#${item.toLowerCase()}`}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    const section = document.querySelector(`#${item.toLowerCase()}`)
+                                    section?.scrollIntoView({ behavior: "smooth" })
+                                    setIsOpen(false)
+                                }}
+                                className="text-white/80 hover:text-white transition-colors"
+                            >
+                                {item}
+                            </Link>
+                        ))}
+                        <Button className="bg-red-600 hover:bg-red-700 ">Sign In</Button>
+                    </nav>
+                </motion.div>
+            )}
         </motion.header>
     )
 }
