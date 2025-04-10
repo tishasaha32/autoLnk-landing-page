@@ -37,7 +37,7 @@ const Hero = () => {
     }, [slides.length])
 
     return (
-        <section className="relative h-screen overflow-hidden p-4 md:p-8 lg:p-16 flex items-center justify-center bg-black">
+        <section id="gallery" className="relative h-screen overflow-hidden p-4 md:p-8 lg:p-16 flex items-center justify-center bg-black">
             {/* Background Images */}
             {slides.map((slide, index) => (
                 <motion.div

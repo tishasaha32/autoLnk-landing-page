@@ -49,16 +49,25 @@ const Header = () => {
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center gap-6">
-                    {["Events", "Categories", "Gallery", "About"].map((item, i) => (
+                    {["Events", "Categories", "Gallery", "NewsLetter"].map((item, i) => (
                         <motion.div
                             key={item}
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 * (i + 1) }}
                         >
-                            <Link href={`#${item.toLowerCase()}`} className="text-white/80 hover:text-white transition-colors">
+                            <Link
+                                href={`#${item.toLowerCase()}`}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    const section = document.querySelector(`#${item.toLowerCase()}`);
+                                    section?.scrollIntoView({ behavior: "smooth" });
+                                }}
+                                className="text-white/80 hover:text-white transition-colors"
+                            >
                                 {item}
                             </Link>
+
                         </motion.div>
                     ))}
                     <motion.div
@@ -88,7 +97,7 @@ const Header = () => {
                         exit={{ opacity: 0, y: -20 }}
                     >
                         <nav className="flex flex-col items-center gap-6 p-4">
-                            {["Events", "Categories", "Gallery", "About"].map((item, i) => (
+                            {["Events", "Categories", "Gallery", "NewsLetter"].map((item, i) => (
                                 <motion.div
                                     key={item}
                                     initial={{ opacity: 0, y: 20 }}
@@ -97,8 +106,12 @@ const Header = () => {
                                 >
                                     <Link
                                         href={`#${item.toLowerCase()}`}
-                                        className="text-white/80 hover:text-white transition-colors text-xl"
-                                        onClick={() => setIsOpen(false)}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            const section = document.querySelector(`#${item.toLowerCase()}`);
+                                            section?.scrollIntoView({ behavior: "smooth" });
+                                        }}
+                                        className="text-white/80 hover:text-white transition-colors"
                                     >
                                         {item}
                                     </Link>
