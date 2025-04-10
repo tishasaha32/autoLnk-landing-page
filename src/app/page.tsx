@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Hero from "@/components/hero";
 import Header from "@/components/header";
 // import Footer from "@/components/footer"
-// import Categories from "@/components/categories"
+import Categories from "@/components/categories"
 // import Newsletter from "@/components/newsletter"
 // import Testimonials from "@/components/testimonials"
 // import FeaturedEvents from "@/components/featured-events"
@@ -19,8 +19,8 @@ export default function Home() {
 			<Header />
 			<main className="">
 				<Hero />
-				{/*<Categories />
-        <FeaturedEvents />
+				<Categories />
+				{/*<FeaturedEvents />
         <Testimonials />
         <Newsletter /> */}
 			</main>
