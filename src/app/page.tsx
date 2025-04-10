@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
-import Hero from "@/components/hero"
+// import Hero from "@/components/hero"
 import Header from "@/components/header"
-import Footer from "@/components/footer"
-import Categories from "@/components/categories"
-import Newsletter from "@/components/newsletter"
-import Testimonials from "@/components/testimonials"
-import FeaturedEvents from "@/components/featured-events"
+// import Footer from "@/components/footer"
+// import Categories from "@/components/categories"
+// import Newsletter from "@/components/newsletter"
+// import Testimonials from "@/components/testimonials"
+// import FeaturedEvents from "@/components/featured-events"
 
 export const metadata: Metadata = {
   title: "AutoLnk - Car Shows & Racing Events",
@@ -17,13 +17,13 @@ export default function Home() {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
-        <Hero />
+        {/* <Hero />
         <Categories />
         <FeaturedEvents />
         <Testimonials />
-        <Newsletter />
+        <Newsletter /> */}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
