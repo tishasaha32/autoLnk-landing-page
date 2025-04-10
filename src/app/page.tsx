@@ -5,7 +5,7 @@ import Header from "@/components/header";
 import Categories from "@/components/categories"
 // import Newsletter from "@/components/newsletter"
 // import Testimonials from "@/components/testimonials"
-// import FeaturedEvents from "@/components/featured-events"
+import FeaturedEvents from "@/components/featured-events"
 
 export const metadata: Metadata = {
 	title: "AutoLnk - Car Shows & Racing Events",
@@ -20,8 +20,8 @@ export default function Home() {
 			<main className="">
 				<Hero />
 				<Categories />
-				{/*<FeaturedEvents />
-        <Testimonials />
+				<FeaturedEvents />
+				{/*<Testimonials />
         <Newsletter /> */}
 			</main>
 			{/* <Footer /> */}
