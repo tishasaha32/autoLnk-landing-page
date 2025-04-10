@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react"
 
@@ -54,9 +55,12 @@ const Footer = () => {
                             transition={{ duration: 0.5 }}
                         >
                             <Link href="/" className="inline-block mb-6">
-                                <div className="text-3xl font-bold">
-                                    Auto<span className="text-red-500">Lnk</span>
-                                </div>
+                                <Image
+                                    src="/logo.png"
+                                    alt="Logo"
+                                    width={100}
+                                    height={100}
+                                />
                             </Link>
 
                             <p className="text-white/70 mb-6 max-w-md">
