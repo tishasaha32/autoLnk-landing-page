@@ -1,21 +1,15 @@
 "use client"
 
 import Link from "next/link"
-import { cn } from "@/lib/utils"
+import Image from "next/image"
 import { Menu, X } from "lucide-react"
+import { motion, } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { AnimatePresence } from "framer-motion"
-import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const [isScrolled, setIsScrolled] = useState(false)
-    const { scrollY } = useScroll()
-
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        setIsScrolled(latest > 50)
-    })
 
     // Close mobile menu when screen size changes
     useEffect(() => {
@@ -24,17 +18,13 @@ const Header = () => {
                 setIsOpen(false)
             }
         }
-
         window.addEventListener("resize", handleResize)
         return () => window.removeEventListener("resize", handleResize)
     }, [])
 
     return (
         <motion.header
-            className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b-1",
-                isScrolled ? "bg-black/90 backdrop-blur-md py-2" : "bg-transparent p-4",
-            )}
+            className="fixed top-0 left-0 right-0 z-50 h-20 bg-black/80 backdrop-blur-md p-4 shadow-md transition-all duration-300"
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.5 }}
@@ -47,7 +37,13 @@ const Header = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2 }}
                     >
-                        Auto<span className="text-red-500">LNK</span>
+                        <Image
+                            src="/logo.png"
+                            alt="Logo"
+                            width={180}
+                            height={40}
+                            className="rounded-full"
+                        />
                     </motion.div>
                 </Link>
 
